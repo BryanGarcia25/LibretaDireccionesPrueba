@@ -20,6 +20,10 @@ class ContactService
         return $this->contactRepository->getAllContacts();
     }
 
+    public function getContactById(int $id) {
+        return $this->contactRepository->getContactById($id);
+    }
+
     public function updateContact(int $id, array $contact) {
         return $this->contactRepository->updateContact($id, $contact);
     }
