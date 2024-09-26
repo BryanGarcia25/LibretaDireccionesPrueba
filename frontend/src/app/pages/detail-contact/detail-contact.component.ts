@@ -13,7 +13,14 @@ import { Contact } from '../../models/contact.model';
   styleUrl: './detail-contact.component.css'
 })
 export class DetailContactComponent implements OnInit {
-  detailContact!: Contact;
+  detailContact: Contact = {
+    id: '',
+    name: '', 
+    notes: '', 
+    birthday: new Date(),
+    website: '',
+    company: '',
+  };
 
   constructor(private contactService: ContactService, private route: ActivatedRoute) {}
 
