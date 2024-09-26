@@ -21,7 +21,8 @@ export class DetailContactComponent implements OnInit {
     website: '',
     company: '',
     phones: [],
-    emails: []
+    emails: [],
+    addresses: []
   };
 
   constructor(private contactService: ContactService, private route: ActivatedRoute) {}
