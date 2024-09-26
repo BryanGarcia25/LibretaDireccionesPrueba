@@ -17,5 +17,10 @@ class ContactController extends Controller
         $registeredContacts = $this->contactService->getAllContacts();
         return response()->json($registeredContacts);
     }
+
+    public function store(Request $contactRequest) {
+        $contact = $this->contactService->createContact($contactRequest->all());
+        return response()->json($contact, 201);
+    }
     
 }
