@@ -28,6 +28,14 @@
               </ul>
             }
           </ul>
+          <p><strong>Direcciones:</strong></p>
+          <ul>
+            @for (address of detailContact.addresses; track $index) {
+              <ul>
+                <li>{{ address.address }}</li>
+              </ul>
+            }
+          </ul>
         </mat-card-content>
     </mat-card>
 </div>
