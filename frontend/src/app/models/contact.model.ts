@@ -1,3 +1,4 @@
+import { Address } from "./address.model";
 import { Email } from "./email.model";
 import { Phone } from "./phone.model";
 
@@ -9,5 +10,6 @@ export interface Contact {
     website: string,
     company: string,
     phones: Phone[],
-    emails: Email[]
+    emails: Email[],
+    addresses: Address[]
 }
