@@ -20,6 +20,14 @@
               </ul>
             }
           </ul>
+          <p><strong>Emails:</strong></p>
+          <ul>
+            @for (email of detailContact.emails; track $index) {
+              <ul>
+                <li>{{ email.email }}</li>
+              </ul>
+            }
+          </ul>
         </mat-card-content>
     </mat-card>
 </div>
