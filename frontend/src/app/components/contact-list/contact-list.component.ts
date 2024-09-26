@@ -47,4 +47,15 @@ export class ContactListComponent implements OnInit {
   navigateToDetails(id: string) {
     this.router.navigate([`/detalles/${id}`])
   }
+
+  deleteContact(id: string) {
+    this.contactService.deleteContact(id).subscribe({
+      next: (response) => {
+        alert(response)
+      },
+      error: (error) => {
+        alert(`Error al momento de eliminar contacto ${error}`)
+      }
+    })
+  }
 }
