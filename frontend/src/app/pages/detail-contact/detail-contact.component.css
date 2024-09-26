@@ -1,0 +1,46 @@
+.contact {
+    min-height: 100vh;
+    display: flex;
+}
+
+.contact > * {
+    margin: auto;
+}
+
+.contact-card {
+    width: 700px;
+    height: 300px;
+}
+
+.contact-logo {
+    background-image: url('https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png');
+    background-size: cover;
+}
+
+mat-card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+mat-card-title {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+mat-card-subtitle {
+    font-size: 1em;
+    color: gray;
+}
+
+mat-card-content p {
+    margin: 8px 0;
+}
+
+mat-card-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    margin: 10px 0;
+}
+  
