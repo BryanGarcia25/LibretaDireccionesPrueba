@@ -1,1 +1,18 @@
-<p>detail-contact works!</p>
+<div class="contact">
+    <mat-card class="contact-card">
+        <mat-card-header>
+          <div mat-card-avatar class="contact-logo"></div>
+          <mat-card-title>{{ detailContact.name }}</mat-card-title>
+          <mat-card-subtitle>{{ detailContact.company }}</mat-card-subtitle>
+        </mat-card-header>
+      
+        <mat-card-content>
+          <p><strong>Notas: </strong> {{ detailContact.notes }}</p>
+          <p><strong>Fecha de Cumpleaños: </strong> {{ detailContact.birthday }}</p>
+          <p><strong>Página Web: </strong> 
+            <a [href]="detailContact.website" target="_blank">{{ detailContact.website }}</a>
+          </p>
+        </mat-card-content>
+    </mat-card>
+</div>
+  
