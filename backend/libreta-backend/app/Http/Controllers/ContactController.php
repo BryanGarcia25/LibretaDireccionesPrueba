@@ -18,6 +18,11 @@ class ContactController extends Controller
         return response()->json($registeredContacts);
     }
 
+    public function show(int $id) {
+        $contactFound = $this->contactService->getContactById($id);
+        return response()->json($contactFound);
+    }
+
     public function store(Request $contactRequest) {
         $contact = $this->contactService->createContact($contactRequest->all());
         return response()->json($contact, 201);
