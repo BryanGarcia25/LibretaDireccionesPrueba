@@ -19,4 +19,8 @@ class ContactService
     public function getAllContacts() {
         return $this->contactRepository->getAllContacts();
     }
+
+    public function updateContact(int $id, array $contact) {
+        return $this->contactRepository->updateContact($id, $contact);
+    }
 }
