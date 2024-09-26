@@ -12,6 +12,10 @@ class ContactService
         $this->contactRepository = $contactRepository;
     }
 
+    public function createContact(array $contact) {
+        return $this->contactRepository->createContact($contact);
+    }
+
     public function getAllContacts() {
         return $this->contactRepository->getAllContacts();
     }
