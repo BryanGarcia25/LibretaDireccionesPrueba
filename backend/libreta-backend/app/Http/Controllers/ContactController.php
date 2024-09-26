@@ -22,5 +22,10 @@ class ContactController extends Controller
         $contact = $this->contactService->createContact($contactRequest->all());
         return response()->json($contact, 201);
     }
+
+    public function edit(int $id, request $contact) {
+        $contactUpdated = $this->contactService->updateContact($id, $contact->all());
+        return response($contactUpdated);
+    }
     
 }
