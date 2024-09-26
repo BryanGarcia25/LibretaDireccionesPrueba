@@ -7,6 +7,7 @@ import { Contact } from '../../models/contact.model';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { map, startWith } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-contact-list',
@@ -23,7 +24,7 @@ export class ContactListComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private contactService: ContactService) {}
+  constructor(private contactService: ContactService, private router: Router) {}
 
   ngOnInit(): void {
     this.contactService.getAllContacts().subscribe({
@@ -37,5 +38,9 @@ export class ContactListComponent implements OnInit {
     });
 
     this.filterInput.valueChanges.pipe(startWith(''), map(value => this.contacts.filter = value!.trim().toLowerCase())).subscribe();
+  }
+
+  navigateToEdit(id: string) {
+    this.router.navigate([`/editar/${id}`])
   }
 }
