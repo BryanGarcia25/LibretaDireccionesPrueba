@@ -43,4 +43,8 @@ export class ContactListComponent implements OnInit {
   navigateToEdit(id: string) {
     this.router.navigate([`/editar/${id}`])
   }
+
+  navigateToDetails(id: string) {
+    this.router.navigate([`/detalles/${id}`])
+  }
 }
