@@ -1,3 +1,4 @@
+import { Email } from "./email.model";
 import { Phone } from "./phone.model";
 
 export interface Contact {
@@ -7,5 +8,6 @@ export interface Contact {
     birthday: Date,
     website: string,
     company: string,
-    phones: Phone[]
+    phones: Phone[],
+    emails: Email[]
 }
