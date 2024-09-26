@@ -17,5 +17,10 @@ export const routes: Routes = [
         path: 'registro',
         component: AddContactComponent,
         title: 'Registrar contacto'
+    },
+    {
+        path: 'editar/:id',
+        component: AddContactComponent,
+        title: 'Editar contacto'
     }
 ];
