@@ -16,6 +16,11 @@ class ContactRepositoryImpl implements ContactRepository
         return Contact::with(['Phones', 'Emails', 'Addresses'])->get();
     }
 
+    public function getContactById(int $id)
+    {
+        return Contact::with(['Phones', 'Emails', 'Addresses'])->find($id);
+    }
+
     public function updateContact(int $id, array $contact)
     {
         $contactFound = Contact::find($id);
