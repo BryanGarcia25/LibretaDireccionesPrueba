@@ -26,3 +26,9 @@
     background: #3657fb;
     color: #ffffff;
 }
+
+.phone-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
