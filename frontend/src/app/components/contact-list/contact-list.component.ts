@@ -43,6 +43,10 @@ export class ContactListComponent implements OnInit {
     });
   }
 
+  navigateToRegister() {
+    this.router.navigate(['/registro'])
+  }
+
   navigateToEdit(id: string) {
     this.router.navigate([`/editar/${id}`])
   }
