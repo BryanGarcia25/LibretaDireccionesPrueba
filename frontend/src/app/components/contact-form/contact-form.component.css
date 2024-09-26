@@ -1,0 +1,28 @@
+.contact {
+    min-height: 100vh;
+    display: flex;
+}
+
+.contact > * {
+    margin: auto;
+}
+
+.contact-card {
+    justify-content: space-between;
+    width: 650px;
+    height: 400px;
+    padding: 20px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form > button {
+    text-align: center;
+    width: 50%;
+    margin: 0 auto;
+    background: #3657fb;
+    color: #ffffff;
+}
