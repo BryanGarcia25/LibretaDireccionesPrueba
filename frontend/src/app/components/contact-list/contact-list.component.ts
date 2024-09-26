@@ -4,8 +4,9 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { Contact } from '../../models/contact.model';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { map, startWith } from 'rxjs';
 
 @Component({
   selector: 'app-contact-list',
@@ -18,6 +19,7 @@ import { MatInputModule } from '@angular/material/input';
 export class ContactListComponent implements OnInit {
   displayedColumns: string[] = ['name', 'notes', 'birthday', 'website', 'company'];
   contacts = new MatTableDataSource<Contact>([]);
+  filterInput = new FormControl('');
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -33,5 +35,7 @@ export class ContactListComponent implements OnInit {
         alert(`Error en el servidor ${error}`)
       }
     });
+
+    this.filterInput.valueChanges.pipe(startWith(''), map(value => this.contacts.filter = value!.trim().toLowerCase())).subscribe();
   }
 }

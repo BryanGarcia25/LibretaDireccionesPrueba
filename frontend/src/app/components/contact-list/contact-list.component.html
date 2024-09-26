@@ -1,4 +1,11 @@
 <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Filter</mat-label>
+      <input matInput [formControl]="filterInput" placeholder="Filter">
+    </mat-form-field>
+</div>
+
+<div>
     <table mat-table [dataSource]="contacts" class="mat-elevation-z8">
   
       <ng-container matColumnDef="name">
