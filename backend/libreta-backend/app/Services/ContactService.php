@@ -23,4 +23,8 @@ class ContactService
     public function updateContact(int $id, array $contact) {
         return $this->contactRepository->updateContact($id, $contact);
     }
+
+    public function deleteContact(int $id) {
+        return $this->contactRepository->deleteContact($id);
+    }
 }
