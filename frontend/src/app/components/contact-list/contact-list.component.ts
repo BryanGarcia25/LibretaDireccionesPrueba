@@ -17,7 +17,7 @@ import { map, startWith } from 'rxjs';
 })
 
 export class ContactListComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'notes', 'birthday', 'website', 'company'];
+  displayedColumns: string[] = ['name', 'notes', 'birthday', 'website', 'company', 'options'];
   contacts = new MatTableDataSource<Contact>([]);
   filterInput = new FormControl('');
 
