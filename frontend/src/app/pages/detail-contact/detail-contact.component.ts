@@ -20,6 +20,7 @@ export class DetailContactComponent implements OnInit {
     birthday: new Date(),
     website: '',
     company: '',
+    phones: []
   };
 
   constructor(private contactService: ContactService, private route: ActivatedRoute) {}
