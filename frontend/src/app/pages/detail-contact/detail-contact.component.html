@@ -12,6 +12,14 @@
           <p><strong>Página Web: </strong> 
             <a [href]="detailContact.website" target="_blank">{{ detailContact.website }}</a>
           </p>
+          <p><strong>Teléfonos:</strong></p>
+          <ul>
+            @for (phone of detailContact.phones; track $index) {
+              <ul>
+                <li>{{ phone.phone_number }}</li>
+              </ul>
+            }
+          </ul>
         </mat-card-content>
     </mat-card>
 </div>
