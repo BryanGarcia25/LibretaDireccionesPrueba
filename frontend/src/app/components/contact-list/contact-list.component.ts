@@ -27,6 +27,11 @@ export class ContactListComponent implements OnInit {
   constructor(private contactService: ContactService, private router: Router) {}
 
   ngOnInit(): void {
+    this.getContacts();
+    this.filterInput.valueChanges.pipe(startWith(''), map(value => this.contacts.filter = value!.trim().toLowerCase())).subscribe();
+  }
+
+  getContacts() {
     this.contactService.getAllContacts().subscribe({
       next: (response) => {
         this.contacts.data = response;
@@ -36,8 +41,6 @@ export class ContactListComponent implements OnInit {
         alert(`Error en el servidor ${error}`)
       }
     });
-
-    this.filterInput.valueChanges.pipe(startWith(''), map(value => this.contacts.filter = value!.trim().toLowerCase())).subscribe();
   }
 
   navigateToEdit(id: string) {
@@ -52,6 +55,7 @@ export class ContactListComponent implements OnInit {
     this.contactService.deleteContact(id).subscribe({
       next: (response) => {
         alert(response)
+        this.getContacts()
       },
       error: (error) => {
         alert(`Error al momento de eliminar contacto ${error}`)
