@@ -27,5 +27,10 @@ class ContactController extends Controller
         $contactUpdated = $this->contactService->updateContact($id, $contact->all());
         return response($contactUpdated);
     }
+
+    public function destroy(int $id) {
+        $this->contactService->deleteContact($id);
+        return response()->json("Contacto eliminado");
+    }
     
 }
