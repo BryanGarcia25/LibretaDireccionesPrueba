@@ -24,4 +24,13 @@ class ContactRepositoryImpl implements ContactRepository
         }
         return $contact;
     }
+
+    public function deleteContact(int $id)
+    {
+        $contactFound = Contact::find($id);
+        if ($contactFound) {
+            $contactFound->delete();
+        }
+        return $contactFound;
+    }
 }
