@@ -34,6 +34,28 @@
                 <input matInput formControlName="company">
             </mat-form-field>
 
+            <div>
+                <div class="phone-section">
+                    <p>Teléfonos</p>
+                    <button mat-icon-button (click)="addPhoneNumber()">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </div>
+                <div formArrayName="phones">
+                    @for (phone of phoneArray.controls; track $index) {
+                        <div [formGroupName]="$index" style="display: flex; justify-content: space-between;">
+                            <mat-form-field style="width: 100%;">
+                                <mat-label>Telefono {{ $index + 1 }}</mat-label>                            
+                                <input matInput formControlName="phone_number">
+                            </mat-form-field>
+                            <button mat-icon-button (click)="removePhoneNumber($index)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </div>
+                    }
+                  </div>
+            </div>
+
             <button mat-stroked-button type="submit">Registrar</button>
         </form>
     </mat-card>
