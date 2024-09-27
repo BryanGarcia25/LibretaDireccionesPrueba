@@ -39,6 +39,11 @@ export class ContactFormComponent {
           email: [''],
         })
       ]),
+      addresses: this.formBuilder.array([
+        this.formBuilder.group({
+          address: [''],
+        })
+      ]),
     })
 }
 
@@ -48,6 +53,10 @@ export class ContactFormComponent {
 
   get emailArray() : FormArray {
     return this.contactForm.get('emails') as FormArray;
+  }
+
+  get addressArray() : FormArray {
+    return this.contactForm.get('addresses') as FormArray;
   }
 
   addPhoneNumber() {
@@ -62,12 +71,22 @@ export class ContactFormComponent {
     }));
   }
 
+  addAddress() {
+    this.addressArray.push(this.formBuilder.group({
+      address: ['', Validators.required],
+    }));
+  }
+
   removePhoneNumber(index: number) {
     this.phoneArray.removeAt(index);
   }
 
   removeEmail(index: number) {
     this.emailArray.removeAt(index);
+  }
+
+  removeAddress(index: number) {
+    this.addressArray.removeAt(index);
   }
 
   onSubmitContactForm() {
