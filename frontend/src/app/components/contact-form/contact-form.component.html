@@ -78,6 +78,28 @@
                   </div>
             </div>
 
+            <div>
+                <div class="section">
+                    <p>Direcciones</p>
+                    <button mat-icon-button (click)="addAddress()">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </div>
+                <div formArrayName="addresses">
+                    @for (phone of addressArray.controls; track $index) {
+                        <div [formGroupName]="$index" class="form-group">
+                            <mat-form-field style="width: 100%;">
+                                <mat-label>Dirección {{ $index + 1 }}</mat-label>                            
+                                <input matInput formControlName="address">
+                            </mat-form-field>
+                            <button mat-icon-button (click)="removeAddress($index)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </div>
+                    }
+                  </div>
+            </div>
+
             <button mat-stroked-button type="submit">Registrar</button>
         </form>
     </mat-card>
