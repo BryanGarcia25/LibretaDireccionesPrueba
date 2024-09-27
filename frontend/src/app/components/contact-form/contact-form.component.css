@@ -9,14 +9,27 @@
 
 .contact-card {
     justify-content: space-between;
-    width: 650px;
-    height: 400px;
+    width: 1380px;
+    height: 540px;
     padding: 20px;
 }
 
 .contact-form {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.details {
+    display: flex;
     flex-direction: column;
+    width: 50%;
+    margin-right: 10px;
+}
+
+.references {
+    width: 50%;
+    margin-left: 10px;
 }
 
 .contact-form > button {
