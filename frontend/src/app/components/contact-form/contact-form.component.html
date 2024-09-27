@@ -35,7 +35,7 @@
             </mat-form-field>
 
             <div>
-                <div class="phone-section">
+                <div class="section">
                     <p>Teléfonos</p>
                     <button mat-icon-button (click)="addPhoneNumber()">
                         <mat-icon>add</mat-icon>
@@ -49,6 +49,28 @@
                                 <input matInput formControlName="phone_number">
                             </mat-form-field>
                             <button mat-icon-button (click)="removePhoneNumber($index)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </div>
+                    }
+                  </div>
+            </div>
+
+            <div>
+                <div class="section">
+                    <p>Emails</p>
+                    <button mat-icon-button (click)="addEmail()">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </div>
+                <div formArrayName="emails">
+                    @for (phone of emailArray.controls; track $index) {
+                        <div [formGroupName]="$index" class="form-group">
+                            <mat-form-field style="width: 100%;">
+                                <mat-label>Email {{ $index + 1 }}</mat-label>                            
+                                <input matInput formControlName="email">
+                            </mat-form-field>
+                            <button mat-icon-button (click)="removeEmail($index)">
                                 <mat-icon>delete</mat-icon>
                             </button>
                         </div>
