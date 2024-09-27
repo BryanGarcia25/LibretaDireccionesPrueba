@@ -17,22 +17,28 @@
 .contact-form {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
 }
 
 .details {
     display: flex;
     flex-direction: column;
-    width: 50%;
-    margin-right: 10px;
+    width: 48%;
 }
 
 .references {
-    width: 50%;
-    margin-left: 10px;
+    width: 48%;
 }
 
-.contact-form > button {
+.button-container {
+    width: 100%;
+    display: flex;
+    justify-content: center; 
+    margin-top: 10px;
+}
+
+.contact-form > .button-container > button {
     text-align: center;
     width: 50%;
     margin: 0 auto;
