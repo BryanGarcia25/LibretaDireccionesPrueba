@@ -3,38 +3,39 @@
         <mat-card-content>Registro de contactos</mat-card-content>
         <mat-divider></mat-divider>
         <form [formGroup]="contactForm" (ngSubmit)="onSubmitContactForm()" class="contact-form">
-            <mat-form-field>
-              <mat-label>Nombre</mat-label>
-              <input matInput formControlName="name">
-            </mat-form-field>
-
-            <mat-form-field>
-                <mat-label>Notas</mat-label>
-                <input matInput formControlName="notes">
-            </mat-form-field>
-
-            <mat-form-field>
-                <mat-label>Fecha de cumpleaños</mat-label>
-                <input matInput [matDatepicker]="picker" formControlName="birthday">
-                <mat-hint>MM/DD/YYYY</mat-hint>
-                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-                @if (contactForm.get('birthday')?.invalid && contactForm.get('birthday')?.touched) {
-                    <mat-error>La fecha es obligatoria</mat-error>
-                }
-            </mat-form-field>
-
-            <mat-form-field>
-                <mat-label>Página web</mat-label>
-                <input matInput formControlName="website">
-            </mat-form-field>
-
-            <mat-form-field>
-                <mat-label>Empresa en la que trabaja</mat-label>
-                <input matInput formControlName="company">
-            </mat-form-field>
-
-            <div>
+            <div class="details">
+                <mat-form-field>
+                    <mat-label>Nombre</mat-label>
+                    <input matInput formControlName="name">
+                </mat-form-field>
+      
+                <mat-form-field>
+                    <mat-label>Notas</mat-label>
+                    <input matInput formControlName="notes">
+                </mat-form-field>
+      
+                <mat-form-field>
+                    <mat-label>Fecha de cumpleaños</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="birthday">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    @if (contactForm.get('birthday')?.invalid && contactForm.get('birthday')?.touched) {
+                        <mat-error>La fecha es obligatoria</mat-error>
+                    }
+                </mat-form-field>
+      
+                <mat-form-field>
+                    <mat-label>Página web</mat-label>
+                    <input matInput formControlName="website">
+                </mat-form-field>
+      
+                <mat-form-field>
+                    <mat-label>Empresa en la que trabaja</mat-label>
+                    <input matInput formControlName="company">
+                </mat-form-field>
+            </div>
+            <div class="references">
                 <div class="section">
                     <p>Teléfonos</p>
                     <button mat-icon-button (click)="addPhoneNumber()">
@@ -53,10 +54,8 @@
                             </button>
                         </div>
                     }
-                  </div>
-            </div>
+                </div>
 
-            <div>
                 <div class="section">
                     <p>Emails</p>
                     <button mat-icon-button (click)="addEmail()">
@@ -75,10 +74,8 @@
                             </button>
                         </div>
                     }
-                  </div>
-            </div>
+                </div>
 
-            <div>
                 <div class="section">
                     <p>Direcciones</p>
                     <button mat-icon-button (click)="addAddress()">
@@ -97,10 +94,10 @@
                             </button>
                         </div>
                     }
-                  </div>
+                </div>
+                <button mat-stroked-button type="submit">Registrar</button>
             </div>
 
-            <button mat-stroked-button type="submit">Registrar</button>
         </form>
     </mat-card>
 </div>
