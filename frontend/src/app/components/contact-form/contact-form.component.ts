@@ -8,6 +8,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ContactService } from '../../services/contact.service';
+import { Contact } from '../../models/contact.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-contact-form',
@@ -20,7 +23,7 @@ import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } fr
 export class ContactFormComponent {
   contactForm!: FormGroup
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private contactService: ContactService, private router: Router) {}
 
   ngOnInit(): void {
     this.contactForm = this.formBuilder.group({
@@ -90,6 +93,22 @@ export class ContactFormComponent {
   }
 
   onSubmitContactForm() {
-    
+    if (this.contactForm.valid) {
+      this.contactForm.patchValue({
+        birthday: new Date(this.contactForm.value['birthday']).toISOString().split('T')[0]
+      })
+
+      const contact = this.contactForm.value as Contact;
+      this.contactService.addContact(contact).subscribe({
+        next: (response) => {
+          console.log(response);
+          alert("Contacto guardado correctamente")
+          this.router.navigate(['/'])
+        },
+        error: (error) => {
+          alert(`Error al momento de guardar el contacto ${error}`)
+        }
+      })
+    }
   }
 }
