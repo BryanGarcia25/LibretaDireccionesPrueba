@@ -22,17 +22,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ContactFormComponent {
   contactForm!: FormGroup
+  id!: string;
 
   constructor(private formBuilder: FormBuilder, private contactService: ContactService, private router: Router, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
 
-    const id = this.activatedRoute.snapshot.paramMap.get('id')
-    if (id) {
-      this.contactService.getContactById(id).subscribe({
+    this.id = this.activatedRoute.snapshot.paramMap.get('id')!
+    if (this.id) {
+      this.contactService.getContactById(this.id).subscribe({
         next: (response) => {
-          console.log(response.phones);
-          
           this.contactForm.patchValue({
             name: response.name,
             notes: response.notes,
@@ -124,8 +123,8 @@ export class ContactFormComponent {
 
       const contact = this.contactForm.value as Contact;
 
-      if (this.activatedRoute.snapshot.paramMap.get('id')) {
-        this.contactService.editContact(this.activatedRoute.snapshot.paramMap.get('id')!, contact).subscribe({
+      if (this.id) {
+        this.contactService.editContact(this.id, contact).subscribe({
           next: (response) => {
             this.router.navigate(['/'])
             alert("Contacto actualizado exitosamente")
