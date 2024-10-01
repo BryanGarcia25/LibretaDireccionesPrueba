@@ -8,11 +8,12 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { map, startWith } from 'rxjs';
 import { Router } from '@angular/router';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-contact-list',
   standalone: true,
-  imports: [MatTableModule, MatPaginator, MatFormFieldModule, MatInputModule, ReactiveFormsModule],
+  imports: [MatTableModule, MatPaginator, MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatIcon],
   templateUrl: './contact-list.component.html',
   styleUrl: './contact-list.component.css'
 })
