@@ -123,16 +123,29 @@ export class ContactFormComponent {
       })
 
       const contact = this.contactForm.value as Contact;
-      this.contactService.addContact(contact).subscribe({
-        next: (response) => {
-          console.log(response);
-          alert("Contacto guardado correctamente")
-          this.router.navigate(['/'])
-        },
-        error: (error) => {
-          alert(`Error al momento de guardar el contacto ${error}`)
-        }
-      })
+
+      if (this.activatedRoute.snapshot.paramMap.get('id')) {
+        this.contactService.editContact(this.activatedRoute.snapshot.paramMap.get('id')!, contact).subscribe({
+          next: (response) => {
+            this.router.navigate(['/'])
+            alert("Contacto actualizado exitosamente")
+          },
+          error: (error) => {
+            alert(`Error al actualizar el contacto ${error}`)
+          }
+        })
+      } else {
+        this.contactService.addContact(contact).subscribe({
+          next: (response) => {
+            console.log(response);
+            alert("Contacto guardado correctamente")
+            this.router.navigate(['/'])
+          },
+          error: (error) => {
+            alert(`Error al momento de guardar el contacto ${error}`)
+          }
+        })
+      }
     }
   }
 }
