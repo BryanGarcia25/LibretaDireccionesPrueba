@@ -10,7 +10,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ContactService } from '../../services/contact.service';
 import { Contact } from '../../models/contact.model';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-contact-form',
@@ -23,30 +23,54 @@ import { Router } from '@angular/router';
 export class ContactFormComponent {
   contactForm!: FormGroup
 
-  constructor(private formBuilder: FormBuilder, private contactService: ContactService, private router: Router) {}
+  constructor(private formBuilder: FormBuilder, private contactService: ContactService, private router: Router, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
+
+    const id = this.activatedRoute.snapshot.paramMap.get('id')
+    if (id) {
+      this.contactService.getContactById(id).subscribe({
+        next: (response) => {
+          console.log(response.phones);
+          
+          this.contactForm.patchValue({
+            name: response.name,
+            notes: response.notes,
+            birthday: response.birthday,
+            website: response.website,
+            company: response.company,
+          })
+
+          response.phones.forEach((phone) => {
+            this.phoneArray.push(this.formBuilder.group({
+              phone_number: [phone.phone_number] 
+            }))
+          })
+
+          response.emails.forEach((email) => {
+            this.emailArray.push(this.formBuilder.group({
+              email: [email.email] 
+            }))
+          })
+
+          response.addresses.forEach((address) => {
+            this.addressArray.push(this.formBuilder.group({
+              address: [address.address] 
+            }))
+          })
+        }
+      })
+    }
+
     this.contactForm = this.formBuilder.group({
       name: ['', Validators.required],
       notes: [''],
       birthday: ['', Validators.required],
       website: [''],
       company: ['', Validators.required],
-      phones: this.formBuilder.array([
-        this.formBuilder.group({
-          phone_number: ['', Validators.required],
-        })
-      ]),
-      emails: this.formBuilder.array([
-        this.formBuilder.group({
-          email: [''],
-        })
-      ]),
-      addresses: this.formBuilder.array([
-        this.formBuilder.group({
-          address: [''],
-        })
-      ]),
+      phones: this.formBuilder.array([]),
+      emails: this.formBuilder.array([]),
+      addresses: this.formBuilder.array([]),
     })
 }
 
