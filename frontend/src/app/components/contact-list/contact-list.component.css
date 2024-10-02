@@ -5,3 +5,20 @@
 .notes-column {
   width: 15%;
 }
+
+.mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.mat-elevation-z8 {
+  margin-bottom: 10px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+button {
+  margin-right: 10px;
+}
