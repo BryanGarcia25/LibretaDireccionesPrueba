@@ -30,13 +30,15 @@ export class ContactListComponent implements OnInit {
   constructor(private contactService: ContactService, private router: Router) {}
 
   ngOnInit(): void {
-    this.getContacts(0);
+    this.getContacts(0, 10);
     this.filterInput.valueChanges.pipe(startWith(''), map(value => this.contacts.filter = value!.trim().toLowerCase())).subscribe();
   }
 
-  getContacts(pageNumber: number) {
-    this.contactService.getAllContacts(pageNumber).subscribe({
+  getContacts(pageNumber: number, pageSize: number) {
+    this.contactService.getAllContacts(pageNumber, pageSize).subscribe({
       next: (response) => {
+        console.log(response);
+        
         this.contacts.data = response.data
         this.totalContacts = response.total
       },
@@ -47,7 +49,7 @@ export class ContactListComponent implements OnInit {
   }
 
   onChangePage(event: PageEvent) {
-    this.getContacts(event.pageIndex)
+    this.getContacts(event.pageIndex, event.pageSize)
   }
 
   navigateToRegister() {
@@ -66,7 +68,7 @@ export class ContactListComponent implements OnInit {
     this.contactService.deleteContact(id).subscribe({
       next: (response) => {
         alert(response)
-        this.getContacts(1)
+        this.getContacts(0, 10)
       },
       error: (error) => {
         alert(`Error al momento de eliminar contacto ${error}`)
