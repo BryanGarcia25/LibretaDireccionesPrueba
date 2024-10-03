@@ -1,6 +1,6 @@
 <div class="contact">
     <mat-card class="contact-card" appearance="outlined">
-        <mat-card-content>Registro de contactos</mat-card-content>
+        <mat-card-content>{{ id === null ? 'Registro de contacto' : 'Editar contacto registrado' }}</mat-card-content>
         <mat-divider></mat-divider>
         <form [formGroup]="contactForm" (ngSubmit)="onSubmitContactForm()" class="contact-form">
             <div class="details">
