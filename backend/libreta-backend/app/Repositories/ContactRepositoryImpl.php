@@ -13,7 +13,7 @@ class ContactRepositoryImpl implements ContactRepository
 
     public function getAllContacts()
     {
-        return Contact::with(['Phones', 'Emails', 'Addresses'])->get();
+        return Contact::with(['Phones', 'Emails', 'Addresses'])->paginate(10);
     }
 
     public function getContactById(int $id)
