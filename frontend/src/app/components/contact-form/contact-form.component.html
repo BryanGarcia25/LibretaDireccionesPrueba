@@ -38,7 +38,7 @@
             <div class="references">
                 <div class="section">
                     <p>Teléfonos</p>
-                    <button mat-icon-button (click)="addPhoneNumber()">
+                    <button mat-icon-button type="button" (click)="addPhoneNumber()">
                         <mat-icon>add</mat-icon>
                     </button>
                 </div>
@@ -49,7 +49,7 @@
                                 <mat-label>Telefono {{ $index + 1 }}</mat-label>                            
                                 <input matInput formControlName="phone_number">
                             </mat-form-field>
-                            <button mat-icon-button (click)="removePhoneNumber($index)">
+                            <button mat-icon-button type="button" (click)="removePhoneNumber($index)">
                                 <mat-icon>delete</mat-icon>
                             </button>
                         </div>
@@ -58,7 +58,7 @@
 
                 <div class="section">
                     <p>Emails</p>
-                    <button mat-icon-button (click)="addEmail()">
+                    <button mat-icon-button type="button" (click)="addEmail()">
                         <mat-icon>add</mat-icon>
                     </button>
                 </div>
@@ -69,7 +69,7 @@
                                 <mat-label>Email {{ $index + 1 }}</mat-label>                            
                                 <input matInput formControlName="email">
                             </mat-form-field>
-                            <button mat-icon-button (click)="removeEmail($index)">
+                            <button mat-icon-button type="button" (click)="removeEmail($index)">
                                 <mat-icon>delete</mat-icon>
                             </button>
                         </div>
@@ -78,7 +78,7 @@
 
                 <div class="section">
                     <p>Direcciones</p>
-                    <button mat-icon-button (click)="addAddress()">
+                    <button mat-icon-button type="button" (click)="addAddress()">
                         <mat-icon>add</mat-icon>
                     </button>
                 </div>
@@ -89,7 +89,7 @@
                                 <mat-label>Dirección {{ $index + 1 }}</mat-label>                            
                                 <input matInput formControlName="address">
                             </mat-form-field>
-                            <button mat-icon-button (click)="removeAddress($index)">
+                            <button mat-icon-button type="button" (click)="removeAddress($index)">
                                 <mat-icon>delete</mat-icon>
                             </button>
                         </div>
