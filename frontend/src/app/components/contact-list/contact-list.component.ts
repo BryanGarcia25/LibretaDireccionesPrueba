@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ContactService } from '../../services/contact.service';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { Contact } from '../../models/contact.model';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
@@ -21,6 +21,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 export class ContactListComponent implements OnInit {
   displayedColumns: string[] = ['name', 'notes', 'birthday', 'website', 'company', 'options'];
+  totalContacts: number = 0
   contacts = new MatTableDataSource<Contact>([]);
   filterInput = new FormControl('');
 
@@ -29,20 +30,24 @@ export class ContactListComponent implements OnInit {
   constructor(private contactService: ContactService, private router: Router) {}
 
   ngOnInit(): void {
-    this.getContacts();
+    this.getContacts(0);
     this.filterInput.valueChanges.pipe(startWith(''), map(value => this.contacts.filter = value!.trim().toLowerCase())).subscribe();
   }
 
-  getContacts() {
-    this.contactService.getAllContacts().subscribe({
+  getContacts(pageNumber: number) {
+    this.contactService.getAllContacts(pageNumber).subscribe({
       next: (response) => {
-        this.contacts.data = response;
-        this.contacts.paginator = this.paginator;
+        this.contacts.data = response.data
+        this.totalContacts = response.total
       },
       error: (error) => {
         alert(`Error en el servidor ${error}`)
       }
     });
+  }
+
+  onChangePage(event: PageEvent) {
+    this.getContacts(event.pageIndex)
   }
 
   navigateToRegister() {
@@ -61,7 +66,7 @@ export class ContactListComponent implements OnInit {
     this.contactService.deleteContact(id).subscribe({
       next: (response) => {
         alert(response)
-        this.getContacts()
+        this.getContacts(1)
       },
       error: (error) => {
         alert(`Error al momento de eliminar contacto ${error}`)
