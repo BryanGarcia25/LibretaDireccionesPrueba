@@ -11,9 +11,9 @@ class ContactRepositoryImpl implements ContactRepository
         return Contact::create($contact);
     }
 
-    public function getAllContacts()
+    public function getAllContacts(int $perPage)
     {
-        return Contact::with(['Phones', 'Emails', 'Addresses'])->paginate(10);
+        return Contact::with(['Phones', 'Emails', 'Addresses'])->paginate($perPage);
     }
 
     public function getContactById(int $id)

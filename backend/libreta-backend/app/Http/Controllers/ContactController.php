@@ -13,8 +13,9 @@ class ContactController extends Controller
         $this->contactService = $contactService;
     }
 
-    public function index() {
-        $registeredContacts = $this->contactService->getAllContacts();
+    public function index(Request $request) {
+        $perPage = $request->input('per_page', 10);
+        $registeredContacts = $this->contactService->getAllContacts($perPage);
         return response()->json($registeredContacts);
     }
 

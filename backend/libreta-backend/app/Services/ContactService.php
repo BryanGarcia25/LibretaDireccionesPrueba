@@ -16,8 +16,8 @@ class ContactService
         return $this->contactRepository->createContact($contact);
     }
 
-    public function getAllContacts() {
-        return $this->contactRepository->getAllContacts();
+    public function getAllContacts(int $perPage) {
+        return $this->contactRepository->getAllContacts($perPage);
     }
 
     public function getContactById(int $id) {
